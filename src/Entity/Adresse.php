@@ -15,6 +15,8 @@ use Doctrine\ORM\Mapping as ORM;
  * )
  * @ORM\Entity(repositoryClass=AdresseRepository::class)
  */
+
+#[ApiResource(mercure: true)]
 class Adresse
 {
     /**

@@ -17,6 +17,8 @@ use Doctrine\ORM\Mapping as ORM;
  * )
  * @ORM\Entity(repositoryClass=CandidatureRepository::class)
  */
+
+#[ApiResource(mercure: true)]
 class Candidature
 {
     /**

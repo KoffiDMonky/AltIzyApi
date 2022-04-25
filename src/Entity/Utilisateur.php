@@ -16,6 +16,8 @@ use Doctrine\ORM\Mapping as ORM;
  * )
  * @ORM\Entity(repositoryClass=UtilisateurRepository::class)
  */
+
+#[ApiResource(mercure: true)]
 class Utilisateur
 {
     /**
@@ -36,13 +38,6 @@ class Utilisateur
      */
     private $login;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * 
-     * @Groups({"utilisateur:read", "utilisateur:write"})
-     * 
-     */
-    private $motDePasse;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Etudiant", mappedBy="utilisateur", cascade={"persist", "remove"})
@@ -68,6 +63,11 @@ class Utilisateur
      */
     private $GoogleToken;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $uid;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -81,18 +81,6 @@ class Utilisateur
     public function setLogin(string $login): self
     {
         $this->login = $login;
-
-        return $this;
-    }
-
-    public function getMotDePasse(): ?string
-    {
-        return $this->motDePasse;
-    }
-
-    public function setMotDePasse(string $motDePasse): self
-    {
-        $this->motDePasse = $motDePasse;
 
         return $this;
     }
@@ -149,6 +137,18 @@ class Utilisateur
     public function setGoogleToken(string $GoogleToken): self
     {
         $this->GoogleToken = $GoogleToken;
+
+        return $this;
+    }
+
+    public function getUid(): ?string
+    {
+        return $this->uid;
+    }
+
+    public function setUid(string $uid): self
+    {
+        $this->uid = $uid;
 
         return $this;
     }
