@@ -72,9 +72,6 @@ class Entreprise
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * 
-     * @Groups({"entreprise:read", "entreprise:write"})
-     * 
      */
     private $telephone;
 
@@ -88,9 +85,6 @@ class Entreprise
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Adresse", cascade={"persist"})
-     * 
-     * @Groups({"entreprise:read", "entreprise:write"})
-     * 
      */
     private $adresse;
 
@@ -104,9 +98,6 @@ class Entreprise
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Annonce", mappedBy="entreprise", cascade={"persist"})
-     * 
-     * @Groups({"entreprise:read"})
-     * 
      */
     private $annonces;
 
@@ -120,11 +111,17 @@ class Entreprise
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Tag", mappedBy="entreprise", cascade={"persist"})
+ 
+     */
+    private $tags;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
      * 
      * @Groups({"entreprise:read", "entreprise:write"})
      * 
      */
-    private $tags;
+    private $description;
 
     public function __construct()
     {
@@ -342,6 +339,18 @@ class Entreprise
         if ($this->tags->removeElement($tag)) {
             $tag->removeEntreprise($this);
         }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

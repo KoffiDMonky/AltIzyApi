@@ -9,7 +9,29 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource(
- *      itemOperations={"get", "delete", "patch"},
+ *      itemOperations={
+ *          "get", 
+ *          "delete", 
+ *          "patch",
+ *          "get_by_uid" = {
+ *              "method" = "GET",
+ *              "path" = "/utilisateurs/{uid}",
+ *              "controller" = UtilisateurParUidController::class,
+ *              "read"=false,
+ *              "openapi_context" = {
+ *                "parameters" = {
+ *                  {
+ *                    "name" = "uid",
+ *                    "in" = "path",
+ *                    "description" = "The uid firebase of your user",
+ *                    "type" = "string",
+ *                    "required" = true,
+ *                    "example"= "PaqB4UOG9eeoth7gjkOiw5pQgf12",
+ *           },
+ *         },
+ *       },
+ *           }
+ *         },
  *      normalizationContext={"groups"={"utilisateur:read"}},
  *      denormalizationContext={"groups"={"utilisateur:write"}}
  * 
@@ -42,7 +64,7 @@ class Utilisateur
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Etudiant", mappedBy="utilisateur", cascade={"persist", "remove"})
      * 
-     * @Groups({"utilisateur:read","utilisateur:write"})
+     * @Groups({"utilisateur:read"})
      * 
      */
     private $etudiant;
@@ -50,7 +72,7 @@ class Utilisateur
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Entreprise", mappedBy="utilisateur", cascade={"persist", "remove"})
      * 
-     * @Groups({"utilisateur:read","utilisateur:write"})
+     * @Groups({"utilisateur:read"})
      * 
      */
     private $entreprise;
@@ -65,6 +87,9 @@ class Utilisateur
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Groups({"utilisateur:read","utilisateur:write"})
+     * 
      */
     private $uid;
 

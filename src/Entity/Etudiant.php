@@ -137,27 +137,27 @@ class Etudiant
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Annonce", mappedBy="etudiant", cascade={"persist"})
-     * 
-     * @Groups({"etudiant:read", "etudiant:write"})
-     * 
      */
     private $annonces;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="etudiant", cascade={"persist"})
-     * 
-     * @Groups({"etudiant:read", "etudiant:write"})
-     * 
      */
     private $messages;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Tag", mappedBy="etudiant", cascade={"persist"})
+     * @Groups({"etudiant:read", "etudiant:write"})
+     */
+    private $tags;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
      * 
      * @Groups({"etudiant:read", "etudiant:write"})
      * 
      */
-    private $tags;
+    private $description;
 
     public function __construct()
     {
@@ -426,6 +426,18 @@ class Etudiant
         if ($this->tags->removeElement($tag)) {
             $tag->removeEtudiant($this);
         }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }
