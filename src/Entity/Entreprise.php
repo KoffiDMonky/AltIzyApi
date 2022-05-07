@@ -39,7 +39,7 @@ class Entreprise
     private $utilisateur;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      * 
      * @Groups({"entreprise:read", "entreprise:write"})
      * 
@@ -148,12 +148,12 @@ class Entreprise
         return $this;
     }
 
-    public function getSiren(): ?int
+    public function getSiren(): ?string
     {
         return $this->siren;
     }
 
-    public function setSiren(?int $siren): self
+    public function setSiren(?string $siren): self
     {
         $this->siren = $siren;
 

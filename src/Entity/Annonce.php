@@ -74,7 +74,7 @@ class Annonce
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Entreprise", inversedBy="annonces", cascade={"persist"})
      * 
-     * @Groups({"annonce:write"})
+     * @Groups({"annonce:read","annonce:write"})
      * 
      */
     private $entreprise;
