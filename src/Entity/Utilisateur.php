@@ -3,7 +3,10 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Symfony\Component\Serializer\Annotation\Groups;
+use App\Controller\UtilisateurParUid;
 use App\Repository\UtilisateurRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -13,29 +16,15 @@ use Doctrine\ORM\Mapping as ORM;
  *          "get", 
  *          "delete", 
  *          "patch",
- *          "get_by_uid" = {
- *              "method" = "GET",
- *              "path" = "/utilisateurs/{uid}",
- *              "controller" = UtilisateurParUidController::class,
- *              "read"=false,
- *              "openapi_context" = {
- *                "parameters" = {
- *                  {
- *                    "name" = "uid",
- *                    "in" = "path",
- *                    "description" = "The uid firebase of your user",
- *                    "type" = "string",
- *                    "required" = true,
- *                    "example"= "PaqB4UOG9eeoth7gjkOiw5pQgf12",
- *           },
- *         },
- *       },
- *           }
  *         },
  *      normalizationContext={"groups"={"utilisateur:read"}},
  *      denormalizationContext={"groups"={"utilisateur:write"}}
  * 
  * )
+ * 
+ * @ApiFilter(SearchFilter::class, 
+ *            properties={"uid" = "exact"})
+ * 
  * @ORM\Entity(repositoryClass=UtilisateurRepository::class)
  */
 

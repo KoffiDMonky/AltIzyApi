@@ -9,8 +9,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 
 #[AsController]
-class UtilisateurParUidController extends AbstractController
+class UtilisateurParUid extends AbstractController
 {
+ 
     public function __invoke(string $uid)
     {
         $utilisateur = $this->getDoctrine()
@@ -18,13 +19,13 @@ class UtilisateurParUidController extends AbstractController
             ->findBy(
                 ['uid' => $uid],
             );
- 
+
         if (!$utilisateur) {
             throw $this->createNotFoundException(
                 'No user found for this uid'
             );
         }
- 
+
         return $utilisateur;
     }
 }
