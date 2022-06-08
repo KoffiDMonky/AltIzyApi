@@ -19,6 +19,16 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+    
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    App\OpenApi\JwtDecorator:
+        #resource: '../src/OpenApi/'
+        decorates: 'api_platform.openapi.factory'
+        arguments: ['@.inner'] 
+
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

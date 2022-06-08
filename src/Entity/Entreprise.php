@@ -31,7 +31,7 @@ class Entreprise
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Utilisateur", inversedBy="entreprise", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="entreprise", cascade={"persist", "remove"})
      * 
      * @Groups({"entreprise:read", "entreprise:write"})
      * 
@@ -136,12 +136,12 @@ class Entreprise
         return $this->id;
     }
 
-    public function getUtilisateur(): ?utilisateur
+    public function getUtilisateur(): ?user
     {
         return $this->utilisateur;
     }
 
-    public function setUtilisateur(?utilisateur $utilisateur): self
+    public function setUtilisateur(?user $utilisateur): self
     {
         $this->utilisateur = $utilisateur;
 

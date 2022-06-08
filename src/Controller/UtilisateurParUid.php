@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Utilisateur;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,7 +15,7 @@ class UtilisateurParUid extends AbstractController
     public function __invoke(string $uid)
     {
         $utilisateur = $this->getDoctrine()
-            ->getRepository(Utilisateur::class)
+            ->getRepository(User::class)
             ->findBy(
                 ['uid' => $uid],
             );

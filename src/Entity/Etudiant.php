@@ -32,7 +32,7 @@ class Etudiant
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Utilisateur", inversedBy="etudiant", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="etudiant", cascade={"persist", "remove"})
      * 
      * @Groups({"etudiant:read", "etudiant:write"})
      * 
@@ -172,12 +172,12 @@ class Etudiant
         return $this->id;
     }
 
-    public function getUtilisateur(): ?utilisateur
+    public function getUtilisateur(): ?user
     {
         return $this->utilisateur;
     }
 
-    public function setUtilisateur(?utilisateur $utilisateur): self
+    public function setUtilisateur(?user $utilisateur): self
     {
         $this->utilisateur = $utilisateur;
 

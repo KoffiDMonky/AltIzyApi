@@ -12,8 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ApiResource(
  *      itemOperations={"get", "delete"},
- *      normalizationContext={"groups"={"utilisateur:read"}},
- *      denormalizationContext={"groups"={"utilisateur:write"}}
+ *      normalizationContext={"groups"={"correspondace:read"}},
+ *      denormalizationContext={"groups"={"correspondace:write"}}
  * )
  * @ORM\Entity(repositoryClass=CorrespondanceRepository::class)
  */
@@ -33,7 +33,7 @@ class Correspondance
     /**
      * @ORM\Column(type="date")
      * 
-     * @Groups({"utilisateur:read"})
+     * @Groups({"correspondace:read"})
      * 
      */
     private $date;
@@ -41,7 +41,7 @@ class Correspondance
     /**
      * @ORM\Column(type="integer", nullable=true)
      * 
-     * @Groups({"utilisateur:read", "utilisateur:write"})
+     * @Groups({"correspondace:read", "correspondace:write"})
      * 
      */
     private $idEtudiantCible;
@@ -49,7 +49,7 @@ class Correspondance
     /**
      * @ORM\Column(type="integer", nullable=true)
      * 
-     * @Groups({"utilisateur:read", "utilisateur:write"})
+     * @Groups({"correspondace:read", "correspondace:write"})
      * 
      */
     private $idEntrepriseCible;
@@ -57,7 +57,7 @@ class Correspondance
     /**
      * @ORM\Column(type="boolean")
      * 
-     * @Groups({"utilisateur:read", "utilisateur:write"})
+     * @Groups({"correspondace:read", "correspondace:write"})
      * 
      */
     private $statut;
@@ -70,7 +70,7 @@ class Correspondance
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Annonce", inversedBy="correspondances", cascade={"persist"})
      * 
-     * @Groups({"utilisateur:read", "utilisateur:write"})
+     * @Groups({"correspondace:read", "correspondace:write"})
      * 
      */
     private $annonce;
@@ -78,7 +78,7 @@ class Correspondance
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="correspondance", cascade={"persist"})
      * 
-     * @Groups({"utilisateur:read", "utilisateur:write"})
+     * @Groups({"correspondace:read", "correspondace:write"})
      * 
      */
     private $messages;
